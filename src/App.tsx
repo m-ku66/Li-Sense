@@ -43,7 +43,7 @@ function App() {
       case "opening_screen" || "auth" || "scan_doc":
         return null;
       case "main_app" || "account_security":
-        return <Header setAppState={setAppState} />;
+        return <Header appState={appState} setAppState={setAppState} />;
       default:
         return null;
     }
@@ -58,7 +58,7 @@ function App() {
 
   return (
     <>
-      <div className="relative flex flex-col container max-w-full h-screen md:hidden">
+      <div className="relative flex flex-col container max-w-full h-screen overflow-x-hidden md:hidden">
         {headerRenderer(appState)}
         <div className="fadeIn3 flex w-full h-full justify-center items-center">
           {appRenderer(appState)}

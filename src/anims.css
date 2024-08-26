@@ -66,6 +66,26 @@
     }
 }
 
+@keyframes SlideInLeft {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes SlideOutLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
 .fadeIn1 {
     animation: FadeIn 1s forwards;
 }
@@ -78,8 +98,32 @@
     animation: FadeIn 3s forwards;
 }
 
+.fadeIn4 {
+    animation: FadeIn 4s forwards;
+}
+
+.fadeIn5 {
+    animation: FadeIn 5s forwards;
+}
+
 .fadeOut1 {
     animation: FadeOut 1s forwards;
+}
+
+.fadeOut2 {
+    animation: FadeOut 2s forwards;
+}
+
+.fadeOut3 {
+    animation: FadeOut 3s forwards;
+}
+
+.fadeOut4 {
+    animation: FadeOut 4s forwards;
+}
+
+.fadeOut5 {
+    animation: FadeOut 5s forwards;
 }
 
 .slideUp1 {
@@ -98,14 +142,82 @@
     animation: SlideUp 4s forwards;
 }
 
+.slideUp5 {
+    animation: SlideUp 5s forwards;
+}
+
 .slideDown1 {
     animation: SlideDown 1s forwards;
+}
+
+.slideDown2 {
+    animation: SlideDown 2s forwards;
+}
+
+.slideDown3 {
+    animation: SlideDown 3s forwards;
+}
+
+.slideDown4 {
+    animation: SlideDown 4s forwards;
+}
+
+.slideDown5 {
+    animation: SlideDown 5s forwards;
 }
 
 .slideLeft1 {
     animation: SlideLeft 1s forwards;
 }
 
+.slideLeft2 {
+    animation: SlideLeft 2s forwards;
+}
+
+.slideLeft3 {
+    animation: SlideLeft 3s forwards;
+}
+
+.slideLeft4 {
+    animation: SlideLeft 4s forwards;
+}
+
+.slideLeft5 {
+    animation: SlideLeft 5s forwards;
+}
+
 .slideRight1 {
     animation: SlideRight 1s forwards;
+}
+
+.slideRight2 {
+    animation: SlideRight 2s forwards;
+}
+
+.slideRight3 {
+    animation: SlideRight 3s forwards;
+}
+
+.slideRight4 {
+    animation: SlideRight 4s forwards;
+}
+
+.slideRight5 {
+    animation: SlideRight 5s forwards;
+}
+
+.menuSlide {
+    animation: SlideInLeft 0.5s forwards;
+}
+
+.menuClose {
+    animation: SlideOutLeft 0.5s forwards;
+}
+
+.overlayFadeIn {
+    animation: FadeIn 0.5s forwards;
+}
+
+.overlayFadeOut {
+    animation: FadeOut 0.5s forwards;
 }
