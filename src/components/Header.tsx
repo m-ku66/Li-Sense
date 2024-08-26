@@ -129,7 +129,10 @@ const Header = ({ appState, setAppState }: Props) => {
                   Privacy Policy
                 </h1>
               </div>
-              <div className="flex items-center gap-4">
+              <div
+                onClick={() => setAppState("account_security")}
+                className="flex items-center gap-4"
+              >
                 <ShieldPlusIcon size={32} />
                 <h1 className="inter text-[1.2rem] font-[300]">
                   Account & Security
