@@ -23,11 +23,27 @@ const Home = () => {
         docScanned: "ID",
         scanReceipt: "1434560090",
       },
+      {
+        date: "01/01/2021",
+        time: "00:30:01",
+        location: "54 Main St, Baltimore, MD",
+        name: "Johnny's Liquor Store",
+        docScanned: "ID",
+        scanReceipt: "1434561190",
+      },
+      {
+        date: "03/13/2021",
+        time: "14:08:00",
+        location: "68 Main St, New York, NY",
+        name: "The Dolphin",
+        docScanned: "ID",
+        scanReceipt: "1224560090",
+      },
     ]);
   }, []);
 
   return (
-    <div className="flex flex-col gap-10 items-center justify-center">
+    <div className="mt-32 flex flex-col gap-10 items-center justify-center">
       <div className="flex flex-col gap-4 items-center justify-center">
         <div className="fadeIn1 p-4 outline outline-1 outline-neutral-300 flex justify-center items-center">
           <Image
@@ -45,9 +61,9 @@ const Home = () => {
         <div className="flex w-full h-fit px-10">
           <h1>Recent</h1>
         </div>
-        <div className="overflow-y-scroll w-full h-[60vw]">
+        <div className="overflow-y-scroll w-full h-[70vw]">
           <div className="fadeIn3 flex flex-col w-full h-fit px-10">
-            <div className="flex flex-col gap-6 items-center">
+            <div className="flex flex-col gap-6 items-center pb-32">
               {recentUses.map((use) => (
                 <div
                   key={use.scanReceipt}

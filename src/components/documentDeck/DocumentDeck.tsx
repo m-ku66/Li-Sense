@@ -76,7 +76,7 @@ const DocumentDeck = () => {
       </div>
       <div className="flex gap-1">
         {docs.map((doc) => (
-          <DotIcon key={doc.key} size={48} />
+          <DotIcon key={doc.key} size={32} />
         ))}
       </div>
     </div>

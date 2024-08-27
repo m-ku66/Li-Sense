@@ -40,9 +40,12 @@ function App() {
 
   function headerRenderer(state: string) {
     switch (state) {
-      case "opening_screen" || "auth" || "scan_doc":
+      case "opening_screen":
+      case "auth":
+      case "scan_doc":
         return null;
-      case "main_app" || "account_security":
+      case "main_app":
+      case "account_security":
         return <Header appState={appState} setAppState={setAppState} />;
       default:
         return null;
@@ -58,7 +61,7 @@ function App() {
 
   return (
     <>
-      <div className="relative flex flex-col container max-w-full h-screen overflow-x-hidden md:hidden">
+      <div className="relative flex flex-col container max-w-full h-screen overflow-x-hidden overflow-y-scroll md:hidden">
         {headerRenderer(appState)}
         <div className="fadeIn3 flex w-full h-full justify-center items-center">
           {appRenderer(appState)}

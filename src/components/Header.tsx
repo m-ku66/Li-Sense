@@ -56,7 +56,7 @@ const Header = ({ appState, setAppState }: Props) => {
 
   return (
     <>
-      <div className="z-10 absolute w-full h-10 bg-white top-0 left-0 flex items-center justify-between px-6 py-8 shadow-md">
+      <div className="z-10 fixed w-full h-10 bg-white top-0 left-0 flex items-center justify-between px-6 py-8 shadow-md">
         <div className="flex items-center gap-2">
           <Image
             onClick={() => setAppState("main_app")}
@@ -67,7 +67,7 @@ const Header = ({ appState, setAppState }: Props) => {
             style={{ objectFit: "contain", borderRadius: "0rem" }}
           />
           {headerText && (
-            <h1 className="inter text-[1.5rem] font-[600]">{headerText}</h1>
+            <h1 className="inter text-[1.3rem] font-[500]">{headerText}</h1>
           )}
         </div>
         <Image
@@ -130,7 +130,9 @@ const Header = ({ appState, setAppState }: Props) => {
                 </h1>
               </div>
               <div
-                onClick={() => setAppState("account_security")}
+                onClick={() => {
+                  setAppState("account_security"), closeMenu();
+                }}
                 className="flex items-center gap-4"
               >
                 <ShieldPlusIcon size={32} />
