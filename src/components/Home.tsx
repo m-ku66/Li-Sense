@@ -1,5 +1,5 @@
 import { Image } from "@nextui-org/react";
-import DocumentDeck from "./documentDeck/documentDeck";
+import DocumentDeck from "./documentDeck/DocumentDeck";
 import { useState, useEffect } from "react";
 
 const Home = () => {
