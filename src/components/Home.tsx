@@ -8,9 +8,13 @@ import {
 } from "@nextui-org/react";
 import DocumentDeck from "./documentDeck/DocumentDeck";
 import { useState, useEffect } from "react";
+import { SmartphoneNfcIcon } from "lucide-react";
 
 const Home = () => {
   const [recentUses, setrecentUses] = useState<any[]>([]);
+  const [textAnimState, settextAnimState] = useState<"still" | "animating">(
+    "still"
+  );
 
   useEffect(() => {
     setrecentUses([
@@ -57,13 +61,20 @@ const Home = () => {
     ]);
   }, []);
 
+  const handleScroll = () => {
+    settextAnimState("animating");
+    setTimeout(() => {
+      settextAnimState("still");
+    }, 500); // Reset state after animation completes
+  };
+
   return (
     <div className="relative mt-32 flex flex-col gap-10 items-center justify-center">
-      <div className="z-[20] bg-white rounded-md fixed bottom-8 right-5 p-4 inter text-[1.1rem] font-[400] shadow-lg">
+      <div className="z-[15] bg-white rounded-md fixed bottom-8 right-5 p-4 inter text-[1.1rem] font-[400] shadow-lg">
         + Scan Document
       </div>
       <div className="flex flex-col gap-4 items-center justify-center">
-        <div className="fadeIn1 p-4 outline outline-1 outline-neutral-300 flex justify-center items-center">
+        <div className="p-4 outline outline-1 outline-neutral-300 flex justify-center items-center">
           <Image
             src="/barcode.png"
             alt="scanner"
@@ -72,8 +83,18 @@ const Home = () => {
             style={{ objectFit: "contain", borderRadius: 0 }}
           />
         </div>
+        <div
+          className={
+            textAnimState === "still"
+              ? "flex gap-2 text-neutral-400"
+              : "expand-text-animation flex gap-2 text-neutral-400"
+          }
+        >
+          <SmartphoneNfcIcon size={16} />
+          <p className="inter text-[0.8rem]">Place phone under scanner</p>
+        </div>
         <div className="fadeIn2">
-          <DocumentDeck />
+          <DocumentDeck onScroll={handleScroll} />
         </div>
 
         <div className="flex w-full h-fit px-10">

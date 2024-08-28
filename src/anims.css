@@ -86,6 +86,8 @@
     }
 }
 
+
+
 .fadeIn1 {
     animation: FadeIn 1s forwards;
 }
@@ -220,4 +222,39 @@
 
 .overlayFadeOut {
     animation: FadeOut 0.5s forwards;
+}
+
+
+@keyframes expandWidth {
+    0% {
+        clip-path: inset(0 100% 0 0);
+        /* Start with 0% width */
+    }
+
+    100% {
+        clip-path: inset(0 0% 0 0);
+        /* Expand to 100% width */
+    }
+}
+
+.expand-text-animation {
+    animation: expandWidth 0.5s ease-out forwards;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blink 2s infinite;
 }

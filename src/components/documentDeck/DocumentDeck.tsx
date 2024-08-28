@@ -1,9 +1,14 @@
-import { Card, Image } from "@nextui-org/react";
-import { useState, useEffect } from "react";
+import { Card } from "@nextui-org/react";
+import { useState, useEffect, useRef } from "react";
 import { DotIcon, CarIcon, IdCardIcon } from "lucide-react";
 
-const DocumentDeck = () => {
+type Props = {
+  onScroll: () => void;
+};
+
+const DocumentDeck = ({ onScroll }: Props) => {
   const [docs, setDocs] = useState<any[]>([]);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setDocs([
@@ -15,14 +20,15 @@ const DocumentDeck = () => {
         dob: "01/01/2000",
         address: "123 Main St, New York, NY",
         state: "CA",
-        zip: "10001",
+        zip: "12243",
         gender: "Female",
         height: { en: [5, 11], cm: 180 },
         weight: { en: 120, kg: 54 },
         eyeColor: "Blue",
         issueDate: "01/01/2021",
         expDate: "01/01/2025",
-        thumbnail: "/whimsical_bar.png",
+        thumbnail: "/card_images/ca.png",
+        isExpired: false,
       },
       {
         key: "10001214131",
@@ -41,7 +47,8 @@ const DocumentDeck = () => {
         eyeColor: "Blue",
         issueDate: "01/05/2021",
         expDate: "01/05/2025",
-        thumbnail: "/whimsical_bar.png",
+        thumbnail: "/card_images/ny.png",
+        isExpired: false,
       },
       {
         key: "12131313000",
@@ -53,17 +60,37 @@ const DocumentDeck = () => {
         dob: "01/01/2000",
         address: "123 Main St, New York, NY",
         state: "NJ",
-        zip: "10001",
+        zip: "21236",
         gender: "Female",
         height: { en: [5, 11], cm: 180 },
         weight: { en: 120, kg: 54 },
         eyeColor: "Blue",
         issueDate: "01/01/2000",
         expDate: "01/01/2005",
-        thumbnail: "/whimsical_bar.png",
+        thumbnail: "/card_images/nj.png",
+        isExpired: true,
       },
     ]);
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (onScroll) {
+        onScroll();
+      }
+    };
+
+    const scrollElement = scrollRef.current;
+    if (scrollElement) {
+      scrollElement.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (scrollElement) {
+        scrollElement.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [onScroll]);
 
   function bgColorPicker(state: string) {
     switch (state) {
@@ -80,13 +107,18 @@ const DocumentDeck = () => {
 
   return (
     <div className="w-full h-full flex justify-center items-center flex-col gap-1">
-      <div className="flex overflow-x-scroll w-[100vw] h-fit py-2">
+      <div
+        ref={scrollRef}
+        className="flex overflow-x-scroll w-[100vw] h-fit py-2"
+      >
         <div className="w-fit h-fit flex gap-6 items-center flex-nowrap py-2 px-6">
           {docs.map((doc) => (
             <Card
               key={doc.key}
-              className={`relative flex gap-2 px-5 py-2 w-[350px] h-[225px] bg-neutral-800`}
-              style={{ color: bgColorPicker(doc.state) }}
+              className={`relative flex flex-col justify-between px-5 py-2 w-[350px] h-[225px] bg-neutral-800`}
+              style={{
+                color: bgColorPicker(doc.state),
+              }}
             >
               <div className="flex items-center gap-2 w-full">
                 <div className="flex">
@@ -103,9 +135,12 @@ const DocumentDeck = () => {
                     : "Driver's License"}
                 </p>
               </div>
-              <div className="absolute bottom-5 left-5 flex items-center flex-col gap-0">
+              <div className="w-full bottom-5 left-5 flex items-center justify-between">
+                <div className="flex flex-col gap-0">
+                  <p className="inter text-[0.6rem]">exp</p>
+                  <p className="inter text-[0.8rem]">{doc.expDate}</p>
+                </div>
                 <h1 className="inter text-[2rem] font-[500]">{doc.state}</h1>
-                <p className="inter text-[0.7rem]">{doc.expDate}</p>
               </div>
             </Card>
           ))}
