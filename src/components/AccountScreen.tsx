@@ -5,7 +5,7 @@ const AccountScreen = () => {
   return (
     <div className="w-full h-fit flex flex-col justify-center items-center py-32 px-10 overflow-y-scroll">
       {/* ACCOUNT INFO */}
-      <div className="w-full h-28"></div>
+      <div className="w-full h-52"></div>
       <div className="fadeIn1 flex flex-col gap-1 w-full h-fit mt-32 pt-32">
         <h1 className="inter text-[1.3rem]">Account Information</h1>
         <Divider />
