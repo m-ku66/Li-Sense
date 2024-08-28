@@ -28,9 +28,9 @@ function App() {
       case "auth":
         return <AuthScreen setAppState={setAppState} />;
       case "main_app":
-        return <Home />;
+        return <Home setAppState={setAppState} />;
       case "scan_doc":
-        return <ScanScreen />;
+        return <ScanScreen setAppState={setAppState} />;
       case "account_security":
         return <AccountScreen />;
       default:

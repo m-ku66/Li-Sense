@@ -10,7 +10,11 @@ import DocumentDeck from "./documentDeck/DocumentDeck";
 import { useState, useEffect } from "react";
 import { SmartphoneNfcIcon } from "lucide-react";
 
-const Home = () => {
+type Props = {
+  setAppState: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Home = ({ setAppState }: Props) => {
   const [recentUses, setrecentUses] = useState<any[]>([]);
   const [textAnimState, settextAnimState] = useState<"still" | "animating">(
     "still"
@@ -62,19 +66,26 @@ const Home = () => {
   }, []);
 
   const handleScroll = () => {
-    settextAnimState("animating");
+    setTimeout(() => {
+      settextAnimState("animating");
+    }, 500);
+
     setTimeout(() => {
       settextAnimState("still");
-    }, 500); // Reset state after animation completes
+    }, 1000); // Reset state after animation completes
   };
 
   return (
     <div className="relative mt-32 flex flex-col gap-10 items-center justify-center">
-      <div className="z-[15] bg-white rounded-md fixed bottom-8 right-5 p-4 inter text-[1.1rem] font-[400] shadow-lg">
+      <div
+        onClick={() => setAppState("scan_doc")}
+        className="z-[15] bg-white rounded-md fixed bottom-8 right-5 p-4 inter text-[1.1rem] font-[400] shadow-lg"
+      >
         + Scan Document
       </div>
       <div className="flex flex-col gap-4 items-center justify-center">
-        <div className="p-4 outline outline-1 outline-neutral-300 flex justify-center items-center">
+        <div className="relative flex justify-center items-center pb-4">
+          <div className="blink absolute px-14 py-10 outline outline-1 outline-neutral-400 w-[88px] h-[55px]"></div>
           <Image
             src="/barcode.png"
             alt="scanner"
@@ -102,7 +113,7 @@ const Home = () => {
         </div>
         <div className="overflow-y-scroll w-full h-[70vw]">
           <div className="fadeIn3 flex flex-col w-full h-fit px-10">
-            <div className="flex flex-col gap-6 items-center pb-32">
+            <div className="flex flex-col gap-6 items-center pb-32 pt-10">
               {recentUses.map((use) => (
                 <div
                   key={use.scanReceipt}
