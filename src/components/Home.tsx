@@ -5,6 +5,7 @@ import {
   CardFooter,
   Divider,
   Image,
+  Button,
 } from "@nextui-org/react";
 import DocumentDeck from "./documentDeck/DocumentDeck";
 import { useState, useEffect } from "react";
@@ -19,6 +20,8 @@ const Home = ({ setAppState }: Props) => {
   const [textAnimState, settextAnimState] = useState<"still" | "animating">(
     "still"
   );
+  const [docView, setDocView] = useState<true | false>(false);
+  const [cardAnim, setCardAnim] = useState("open");
 
   useEffect(() => {
     setrecentUses([
@@ -75,8 +78,36 @@ const Home = ({ setAppState }: Props) => {
     }, 1000); // Reset state after animation completes
   };
 
+  const handleDocView = () => {
+    setCardAnim("close");
+    setTimeout(() => {
+      setDocView(false);
+      setCardAnim("open");
+    }, 500);
+  };
+
   return (
     <div className="relative mt-32 flex flex-col gap-10 items-center justify-center">
+      <div
+        className={
+          docView
+            ? `${
+                cardAnim === "open" ? "card-slide" : "card-slide-close"
+              } z-[100] overflow-y-hidden absolute bottom-[-5%] w-full h-[112%] bg-white rounded-3xl flex flex-col items-center gap-2 shadow-[0_-4px_6px_rgba(0,0,0,0.1)]`
+            : "hidden"
+        }
+      >
+        <div
+          onClick={handleDocView}
+          className="flex w-full px-32 py-8 items-center"
+        >
+          <div className="bg-neutral-300 w-full h-1"></div>
+        </div>
+        <div className="w-[90%] h-[80%] bg-neutral-300 mb-2"></div>
+        <Button className="fadeIn1 bg-black text-white w-[80%]">
+          <p className="inter font-[300] text-[1rem]">Details</p>
+        </Button>
+      </div>
       <div
         onClick={() => setAppState("scan_doc")}
         className="z-[15] bg-white rounded-md fixed bottom-8 right-5 p-4 inter text-[1.1rem] font-[400] shadow-lg"
@@ -105,7 +136,11 @@ const Home = ({ setAppState }: Props) => {
           <p className="inter text-[0.8rem]">Place phone under scanner</p>
         </div>
         <div className="fadeIn2">
-          <DocumentDeck onScroll={handleScroll} />
+          <DocumentDeck
+            onScroll={handleScroll}
+            setDocView={setDocView}
+            docView={docView}
+          />
         </div>
 
         <div className="flex w-full h-fit px-10">

@@ -19,8 +19,11 @@ const ScanScreen = ({ setAppState }: Props) => {
         and that your lighting isn’t too dim
       </p>
       <div className="fadeIn4 flex flex-col items-center gap-6 w-full">
-        <Button className="w-[80%]">Proceed</Button>
-        <Button onClick={() => setAppState("main_app")} className="w-[80%]">
+        <Button className="w-[80%] bg-black text-white">Proceed</Button>
+        <Button
+          onClick={() => setAppState("main_app")}
+          className="w-[80%] bg-black text-white"
+        >
           Cancel
         </Button>
       </div>

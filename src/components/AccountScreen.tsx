@@ -46,15 +46,16 @@ const AccountScreen = () => {
             <HeadedInfo headerText="Eye Color" infoText="Brown" />
             <HeadedInfo headerText="Height" infoText="180cm" />
           </div>
-          <div className="flex">
+          <div className="flex gap-8">
             <HeadedInfo headerText="Weight" infoText="54kg" />
+            <HeadedInfo headerText="DOB" infoText="01/25/1999" />
           </div>
         </div>
         <Divider className="mb-6" />
         <div className="fadeIn5 flex mb-6">
           <HeadedInfo headerText="UI Theme" infoText={`Default`} />
         </div>
-        <Button className="fadeIn5">
+        <Button className="fadeIn5 bg-black text-white">
           <p className="inter font-[300] text-[1rem]">Edit</p>
         </Button>
       </div>
