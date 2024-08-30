@@ -10,6 +10,8 @@ import {
 import DocumentDeck from "./documentDeck/DocumentDeck";
 import { useState, useEffect } from "react";
 import { SmartphoneNfcIcon } from "lucide-react";
+import ID from "./id/ID";
+import Details from "./idDetails/Details";
 
 type Props = {
   setAppState: React.Dispatch<React.SetStateAction<string>>;
@@ -22,6 +24,7 @@ const Home = ({ setAppState }: Props) => {
   );
   const [docView, setDocView] = useState<true | false>(false);
   const [cardAnim, setCardAnim] = useState("open");
+  const [idState, setIdState] = useState("cover");
 
   useEffect(() => {
     setrecentUses([
@@ -83,6 +86,7 @@ const Home = ({ setAppState }: Props) => {
     setTimeout(() => {
       setDocView(false);
       setCardAnim("open");
+      setIdState("cover");
     }, 500);
   };
 
@@ -99,13 +103,20 @@ const Home = ({ setAppState }: Props) => {
       >
         <div
           onClick={handleDocView}
-          className="flex w-full px-32 py-8 items-center"
+          className="flex w-full px-32 py-6 items-center"
         >
           <div className="bg-neutral-300 w-full h-1"></div>
         </div>
-        <div className="w-[90%] h-[80%] bg-neutral-300 mb-2"></div>
-        <Button className="fadeIn1 bg-black text-white w-[80%]">
-          <p className="inter font-[300] text-[1rem]">Details</p>
+        <div className="w-[90%] h-[80%] mb-4">
+          {idState === "cover" ? <ID /> : <Details />}
+        </div>
+        <Button
+          onClick={() => setIdState(idState === "cover" ? "details" : "cover")}
+          className="slideUp3 bg-black text-white w-[80%]"
+        >
+          <p className="inter font-[300] text-[1rem]">
+            {idState === "cover" ? "Details" : "Cover"}
+          </p>
         </Button>
       </div>
       <div
